@@ -5,7 +5,7 @@ public class Solutions {
                 matrix[i][j] *= scaleFactor;
             }
         }
-        return matrix;
+        return matrix;//fasd
     }
 
 }
