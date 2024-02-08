@@ -8,4 +8,10 @@ public class Solutions {
         return matrix;//fasd
     }
 
+    public static int findDeterminant(int[][] matrix) {
+        if (matrix.length != matrix[0].length) {
+            System.out.println("Invalid");
+            return 0;
+        }
+
 }
