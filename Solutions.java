@@ -1,33 +1,48 @@
 public class Solutions {
-    //make matrix/2d array of ints for 2x2 and 3x3 and make 2x2 for scaling algorithm to test it
-    int [][]matrixNader2x2 = new int[][]{{1,4,2}, {3,6,8}};
-    int [][]matrixBen3x3 = new int[][]{{3,9,1}, {5,7,3},{2,8,2}};
-    int [][]matrixForScale = new int[][]{{4,5,9}, {1,2,3}};
-    int scaleFactor = 2;
-
-
-    //multiply each value in the 2D array by that scaling factor and return array
-    public static int[][] scale(int[][] matrixForScale, int scaleFactor) {
-        for (int i = 0; i < matrixForScale.length; i++) {
-            for (int j = 0; j < matrixForScale[i].length; j++) {
-                matrixForScale[i][j] *= scaleFactor;
-            }
+        //scale any matrix by scale factor nested for loop
+        public static int[][] scale(int[][] matrix, int scaleFactor) {
+                for (int i = 0; i < matrix.length; i++) {
+                        for (int j = 0; j < matrix[i].length; j++) {
+                                matrix[i][j] *= scaleFactor;
+                        }
+                }
+                return matrix;
         }
-        return matrixForScale;
-    }
 
-    //multiply matrixForScale and matrixNader2x2 (which are the same size)
-    public static int[][] multiplyMatrices(int[][] matrixForScale, int[][]matrixNader2x2) {
-    }
-
-    //find Determinant of the 2x2
-    public static int findDeterminant2x2(int[][] matrixNader2x2) {
+        //multiply matrices (that are the same length)
+        public static int[][] multiplyMatrices(int[][] matrix1, int[][] matrix2) {
+                if (matrix1[0].length != matrix2.length) {
+                        System.out.println("Don't multiply me bro");
+                        return null;
+                }
+                int[][] result = new int[matrix1.length][matrix2[0].length];
+                for (int i = 0; i < matrix1.length; i++) {
+                        for (int j = 0; j < matrix2[0].length; j++) {
+                                for (int k = 0; k < matrix1[0].length; k++) {
+                                        result[i][j] += matrix1[i][k] * matrix2[k][j];
+                                }
+                        }
+                }
+                return result;
         }
-    //find Determinant of the 3x3
-    public static int findDeterminant3x3(int[][] matrixBen3x3) {
 
+        //find determinant of 2x2 matrix
+        public static int findDeterminant2x2(int[][] matrix) {
+                if (matrix.length != 2 || matrix[0].length != 2) {
+                        System.out.println("Wrong wrong wrong size for 2x2!!!");
+                        return 0;
+                }
+                return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
         }
+
+        //find determinant of 3x3 matrix
+        public static int findDeterminant3x3(int[][] matrix) {
+                if (matrix.length != 3 || matrix[0].length != 3) {
+                        System.out.println("Wrong wrong wrong size for 3x3!!!");
+                        return 0;
+                }
+                return matrix[0][0] * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1]) -
+                        matrix[0][1] * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0]) +
+                        matrix[0][2] * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0]);
+        }//not sure if this is how it should be done, but i coded the whole thing out took me like an hour to figure it out with the math. very annoying but prob useful :)
 }
-}
-
-
